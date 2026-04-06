@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dr. Amet Amat Aliaga | Cardiologista</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --teal-deep:  #0F6E56;
+      --teal-mid:   #1D9E75;
+      --teal-light: #5DCAA5;
+      --silver-dark:#8A9099;
+      --dark:       #080d0c;
+      --dark2:      #0e1614;
+    }
+    body {
+      min-height: 100vh;
+      background-color: var(--dark);
+      background-image:
+        radial-gradient(ellipse 70% 45% at 50% -5%, rgba(29,158,117,0.16) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 30% at 15% 80%, rgba(15,110,86,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 35% 25% at 85% 75%, rgba(93,202,165,0.07) 0%, transparent 50%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Sans', sans-serif;
+      padding: 2.5rem 1rem;
+    }
+    .container {
+      display: flex; flex-direction: column; align-items: center;
+      width: 100%; max-width: 420px;
+      animation: fadeUp 0.9s cubic-bezier(.22,.8,.36,1) both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .ecg-wrap { width: 100%; margin-bottom: 2rem; opacity: 0.22; overflow: hidden; }
+    .ecg-wrap svg { width: 100%; display: block; }
+    .avatar-ring {
+      width: 100px; height: 100px; border-radius: 50%; padding: 3px;
+      background: conic-gradient(from 180deg, var(--teal-light), #C8CDD6, var(--teal-mid), var(--teal-light));
+      margin-bottom: 1.3rem;
+      animation: spin 10s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .avatar-inner {
+      width: 100%; height: 100%; border-radius: 50%;
+      background: var(--dark2);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .avatar-inner svg { width: 44px; height: 44px; }
+    .badge {
+      font-size: 10px; font-weight: 500; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--teal-light);
+      background: rgba(93,202,165,0.1); border: 1px solid rgba(93,202,165,0.25);
+      border-radius: 20px; padding: 4px 14px; margin-bottom: 10px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .pulse-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--teal-light);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.5); opacity: 1; }
+    }
+    .name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px; font-weight: 600; color: #e6f0ec;
+      text-align: center; letter-spacing: 0.5px; margin-bottom: 6px;
+    }
+    .specialty {
+      font-size: 12px; font-weight: 300; color: var(--silver-dark);
+      text-align: center; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem;
+    }
+    .tagline {
+      font-size: 13px; font-weight: 300; color: rgba(93,202,165,0.6);
+      text-align: center; margin-bottom: 2.2rem;
+      font-style: italic; font-family: 'Cormorant Garamond', serif;
+    }
+    .divider {
+      width: 56px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--teal-light), transparent);
+      margin-bottom: 2.2rem; opacity: 0.5;
+    }
+    .stats {
+      display: flex; gap: 1px; width: 100%; margin-bottom: 2rem;
+      border: 1px solid rgba(93,202,165,0.12); border-radius: 6px; overflow: hidden;
+    }
+    .stat {
+      flex: 1; padding: 12px 8px; background: rgba(15,110,86,0.08); text-align: center;
+      border-right: 1px solid rgba(93,202,165,0.08);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600;
+      color: var(--teal-light); display: block; line-height: 1.2;
+    }
+    .stat-label {
+      font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--silver-dark); display: block; margin-top: 2px;
+    }
+
+    /* Section label */
+    .section-label {
+      font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(93,202,165,0.45); margin-bottom: 10px; align-self: flex-start;
+    }
+
+    /* Buttons */
+    .btn {
+      display: flex; align-items: center; gap: 14px; width: 100%;
+      padding: 15px 20px; border-radius: 6px; text-decoration: none;
+      margin-bottom: 12px; border: 1px solid rgba(93,202,165,0.15);
+      background: rgba(15,110,86,0.07);
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+      position: relative; overflow: hidden;
+    }
+    .btn::after {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+      background: var(--teal-light); opacity: 0; transition: opacity 0.2s;
+    }
+    .btn:hover { background: rgba(29,158,117,0.13); border-color: rgba(93,202,165,0.38); transform: translateY(-2px); }
+    .btn:hover::after { opacity: 1; }
+    .btn:active { transform: translateY(0); }
+
+    /* PDF button special style */
+    .btn-pdf {
+      border-color: rgba(93,202,165,0.3);
+      background: rgba(29,158,117,0.1);
+    }
+    .btn-pdf::after { background: #9FE1CB; }
+
+    .btn-icon {
+      width: 38px; height: 38px; border-radius: 8px;
+      background: rgba(93,202,165,0.08);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; border: 1px solid rgba(93,202,165,0.18);
+    }
+    .btn-icon svg { width: 20px; height: 20px; }
+    .btn-text { flex: 1; }
+    .btn-label { font-size: 14px; font-weight: 500; color: #d4ede4; display: block; }
+    .btn-sub { font-size: 11px; color: var(--silver-dark); letter-spacing: 0.3px; margin-top: 2px; display: block; }
+    .btn-arrow { color: var(--teal-light); opacity: 0.4; font-size: 18px; transition: opacity 0.2s, transform 0.2s; }
+    .btn:hover .btn-arrow { opacity: 1; transform: translateX(3px); }
+
+    .separator {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(93,202,165,0.15), transparent);
+      margin: 6px 0 16px;
+    }
+
+    .footer {
+      margin-top: 2.5rem; font-size: 10px; color: rgba(138,144,153,0.4);
+      letter-spacing: 2px; text-transform: uppercase; text-align: center;
+    }
+    .footer span { color: rgba(93,202,165,0.35); }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="ecg-wrap">
+      <svg viewBox="0 0 420 30" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <polyline points="0,15 55,15 70,15 80,3 90,27 100,2 110,15 130,15 185,15 200,15 210,3 220,27 230,2 240,15 260,15 315,15 330,15 340,3 350,27 360,2 370,15 420,15"
+          stroke="#5DCAA5" stroke-width="1.2" fill="none"/>
+      </svg>
+    </div>
+
+    <div class="avatar-ring">
+      <div class="avatar-inner">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 38 C24 38 8 28 8 17.5 C8 12.5 12 8 17.5 8 C20.5 8 23 9.5 24 11 C25 9.5 27.5 8 30.5 8 C36 8 40 12.5 40 17.5 C40 28 24 38 24 38Z"
+            fill="none" stroke="#5DCAA5" stroke-width="1.8" stroke-linejoin="round"/>
+          <polyline points="14,20 18,20 20,16 22,24 24,14 26,20 28,20 34,20"
+            stroke="#5DCAA5" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="badge"><span class="pulse-dot"></span>Cardiologista</div>
+    <h1 class="name">Dr. Amet Amat Aliaga</h1>
+    <p class="specialty">Medicina Cardiovascular</p>
+    <p class="tagline">"Cuidando o coração com inovação e dedicação"</p>
+
+    <div class="divider"></div>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-num">+15</span>
+        <span class="stat-label">Anos de exp.</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">♥</span>
+        <span class="stat-label">Cardiologia</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">360°</span>
+        <span class="stat-label">Saúde integral</span>
+      </div>
+    </div>
+
+    <!-- Social links -->
+    <p class="section-label">Redes sociais</p>
+
+    <a class="btn" href="https://www.instagram.com/dr.ametamat/" target="_blank" rel="noopener">
+      <div class="btn-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="5.5" stroke="#5DCAA5" stroke-width="1.8"/>
+          <circle cx="12" cy="12" r="4.5" stroke="#5DCAA5" stroke-width="1.8"/>
+          <circle cx="17.5" cy="6.5" r="1.1" fill="#5DCAA5"/>
+        </svg>
+      </div>
+      <div class="btn-text">
+        <span class="btn-label">Instagram</span>
+        <span class="btn-sub">Dicas de saúde cardiovascular · @dr.ametamat</span>
+      </div>
+      <span class="btn-arrow">›</span>
+    </a>
+
+    <a class="btn" href="https://www.youtube.com/@ametamatmd2010" target="_blank" rel="noopener">
+      <div class="btn-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="5" width="20" height="14" rx="4" stroke="#5DCAA5" stroke-width="1.8"/>
+          <polygon points="10,9 10,15 16,12" fill="#5DCAA5"/>
+        </svg>
+      </div>
+      <div class="btn-text">
+        <span class="btn-label">YouTube</span>
+        <span class="btn-sub">Vídeos educativos sobre o coração · @ametamatmd2010</span>
+      </div>
+      <span class="btn-arrow">›</span>
+    </a>
+
+    <!-- Separator -->
+    <div class="separator"></div>
+    <p class="section-label">Material educativo gratuito</p>
+
+    <!-- PDF Guide button -->
+    <a class="btn btn-pdf" href="guia_hipertensao_dr_amet.pdf" download target="_blank" rel="noopener">
+      <div class="btn-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="2" width="12" height="16" rx="2" stroke="#5DCAA5" stroke-width="1.8"/>
+          <path d="M8 2 L8 6 L16 6" stroke="#5DCAA5" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M8 12 L12 16 L16 12" stroke="#5DCAA5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 10 L12 16" stroke="#5DCAA5" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M4 19 L20 19" stroke="#5DCAA5" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M4 22 L20 22" stroke="#5DCAA5" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="2 3"/>
+        </svg>
+      </div>
+      <div class="btn-text">
+        <span class="btn-label">5 Mitos sobre Hipertensão</span>
+        <span class="btn-sub">Guia gratuita em PDF · Dr. Amet Amat Aliaga</span>
+      </div>
+      <span class="btn-arrow">↓</span>
+    </a>
+
+    <p class="footer">dr. amet amat aliaga <span>✦</span> cardiologia</p>
+
+  </div>
+</body>
+</html>
